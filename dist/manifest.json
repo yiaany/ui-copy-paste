@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "UI Copy-Paste — SaaS Spy & Replicator",
+  "version": "0.2.0",
+  "description": "UI Copy-Paste — Chrome MV3 extension that copies any website UI into clean React + Tailwind components. BYOK (OpenAI / Claude / OpenAI-compatible).",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "http://localhost:31337/*",
+    "http://localhost:8799/*"
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "src/sidebar/index.html"
+  },
+  "icons": {
+    "16": "src/assets/icon-16.png",
+    "32": "src/assets/icon-32.png",
+    "48": "src/assets/icon-48.png",
+    "128": "src/assets/icon-128.png"
+  },
+  "action": {
+    "default_title": "UI Copy-Paste: open side panel and pick an element",
+    "default_icon": {
+      "16": "src/assets/icon-16.png",
+      "32": "src/assets/icon-32.png",
+      "48": "src/assets/icon-48.png",
+      "128": "src/assets/icon-128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "assets/messaging-DyfPBhHA.js",
+        "assets/index.ts-DwWzHrgj.js"
+      ],
+      "use_dynamic_url": false
+    }
+  ]
+}
