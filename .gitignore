@@ -1,0 +1,31 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# логи
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# редакторы
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# артефакты сборки расширения
+*.crx
+*.pem
+
+# кэш TypeScript build
+*.tsbuildinfo
+
+.env
+backend/.env
+.playwright-mcp/
+
+backend/dist/
+cli/dist/
+

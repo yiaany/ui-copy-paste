@@ -1,0 +1,24 @@
+{
+  "name": "ui-copy-paste",
+  "version": "0.1.0",
+  "description": "Локальный мост UI Copy-Paste: пишет сгенерированные .tsx-компоненты в src/components вашего проекта.",
+  "type": "module",
+  "bin": {
+    "ui-copy-paste": "bin/ui-copy-paste.js"
+  },
+  "files": ["bin", "dist", "README.md"],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node bin/ui-copy-paste.js",
+    "dev": "node --experimental-strip-types src/server.ts"
+  },
+  "keywords": ["ui-copy-paste", "chrome-extension", "react", "tailwind", "cli"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "26.0.1",
+    "typescript": "6.0.3"
+  }
+}

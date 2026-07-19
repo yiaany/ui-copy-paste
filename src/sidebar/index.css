@@ -1,0 +1,202 @@
+/* Tailwind v4: подключается одной директивой, без tailwind.config.js. */
+@import 'tailwindcss';
+
+/*
+ * Дизайн-система UI Copy-Paste.
+ *
+ * Тема переключается классом на <html>: .dark / (по умолчанию — светлая).
+ * Все цвета — семантические токены (CSS-переменные). Компоненты используют
+ * только токены (bg-surface, text-fg, border-line, accent…), поэтому обе темы
+ * получаются автоматически и остаются консистентными.
+ *
+ * Кастомные утилиты объявлены через @theme, чтобы Tailwind сгенерил классы
+ * bg-surface / text-fg-muted / border-line / ring-accent и т.д.
+ */
+
+@theme {
+  /* Поверхности (слои глубины: base < raised < overlay). */
+  --color-base: var(--c-base);
+  --color-surface: var(--c-surface);
+  --color-raised: var(--c-raised);
+  --color-overlay: var(--c-overlay);
+
+  /* Текст. */
+  --color-fg: var(--c-fg);
+  --color-fg-muted: var(--c-fg-muted);
+  --color-fg-subtle: var(--c-fg-subtle);
+
+  /* Границы. */
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+
+  /* Акцент (бренд) и семантика. */
+  --color-accent: var(--c-accent);
+  --color-accent-fg: var(--c-accent-fg);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-brand-2: var(--c-brand-2);
+  --color-positive: var(--c-positive);
+  --color-warn: var(--c-warn);
+  --color-info: var(--c-info);
+
+  /* Радиусы и тени фирменные. */
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+}
+
+/* ── Светлая тема (по умолчанию) ─────────────────────────────────────── */
+/*
+ * Акцент — сдержанный «ink» (near-black), а не цветной. Такой монохромный
+ * primary даёт премиальный минимализм (Linear / Vercel / Raycast). Цвет несут
+ * только семантические статусы (positive/warn/info); бренд остаётся нейтральным.
+ */
+:root {
+  --c-base: #f6f6f7;
+  --c-surface: #ffffff;
+  --c-raised: #fafafa;
+  --c-overlay: #ffffff;
+
+  --c-fg: #16161a;
+  --c-fg-muted: #5a5a63;
+  --c-fg-subtle: #8e8e98;
+
+  --c-line: #e9e9ec;
+  --c-line-strong: #d8d8dd;
+
+  /* Ink-акцент: почти чёрный, инвертируется в тёмной теме на near-white. */
+  --c-accent: #18181b;
+  --c-accent-fg: #ffffff;
+  --c-accent-soft: rgba(24, 24, 27, 0.06);
+  --c-brand-2: #3f3f46;
+  --c-positive: #17935a;
+  --c-warn: #b45309;
+  --c-info: #2563eb;
+
+  --shadow-accent: 0 6px 20px -8px rgba(24, 24, 27, 0.28);
+  --shadow-card: 0 1px 2px rgba(16, 16, 24, 0.04), 0 4px 16px -8px rgba(16, 16, 24, 0.08);
+  color-scheme: light;
+}
+
+/* ── Тёмная тема ─────────────────────────────────────────────────────── */
+.dark {
+  --c-base: #0b0b0e;
+  --c-surface: #131317;
+  --c-raised: #1a1a1f;
+  --c-overlay: #1e1e25;
+
+  --c-fg: #f5f5f7;
+  --c-fg-muted: #a2a2ac;
+  --c-fg-subtle: #6c6c78;
+
+  --c-line: #26262d;
+  --c-line-strong: #34343d;
+
+  /* Инвертированный ink: near-white primary с тёмным текстом (Vercel-style). */
+  --c-accent: #fafafa;
+  --c-accent-fg: #16161a;
+  --c-accent-soft: rgba(250, 250, 250, 0.08);
+  --c-brand-2: #d4d4d8;
+  --c-positive: #34d399;
+  --c-warn: #fbbf24;
+  --c-info: #60a5fa;
+
+  --shadow-accent: 0 8px 26px -10px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--c-base);
+  color: var(--c-fg);
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Плавный переход при смене темы (только цвета, чтобы не тормозили layout). */
+:root,
+.dark {
+  transition:
+    background-color 0.3s ease,
+    color 0.2s ease;
+}
+
+/* Фирменный градиентный бренд-текст (тонкий ink-переход, не цветной). */
+.brand-gradient {
+  background: linear-gradient(135deg, var(--c-fg), var(--c-fg-muted));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Мягкий «свет» под акцентными кнопками. */
+.shadow-accent {
+  box-shadow: var(--shadow-accent);
+}
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+/* Тонкие кастомные скроллбары под тему. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-line-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--c-line-strong);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--c-fg-subtle);
+  background-clip: content-box;
+}
+
+/* Доступный фокус-ринг для клавиатуры (не показываем при клике мышью). */
+:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Уважаем prefers-reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Тонкая анимация появления (для карточек-результатов). */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--c-accent-soft) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
