@@ -35,9 +35,6 @@
   <img src="docs/screenshots/sidebar-settings.png" width="280" alt="Settings — bring your own key" />
 </p>
 
-<p align="center">
-  <img src="docs/screenshots/capture-flow.png" width="860" alt="Capture flow: pick element on a page with the side panel open" />
-</p>
 
 | Pick any element | Generate with your key | Export to project |
 |:---:|:---:|:---:|
